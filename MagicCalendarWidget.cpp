@@ -1,5 +1,6 @@
 #include "MagicCalendarWidget.h"
 #include <QPainter>
+#include <QJsonArray>
 
 MagicCalendarWidget::MagicCalendarWidget(QWidget *parent)
     :QCalendarWidget (parent)
@@ -34,8 +35,13 @@ void MagicCalendarWidget::paintCell(QPainter *painter, const QRect &rect, const 
     }
 }
 
-DateInfo::DateInfo(bool bPassed, const QString &text)
-    :passed(bPassed), m_text(text)
+DateInfo::DateInfo(bool bPassed, const QJsonObject &obj)
+    :passed(bPassed), m_obj(obj)
 {
 
+}
+
+QString DateInfo::GetFortuneText()
+{
+    return m_obj.find("fortune").value().toArray().first().toObject().find("text").value().toString();
 }

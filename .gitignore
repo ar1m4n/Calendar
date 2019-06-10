@@ -8,8 +8,8 @@
 *.so
 *.dll
 *.dylib
-!3rdparty/android24x86/libcrypto.so
-!3rdparty/android24x86/libssl.so
+!3rdparty/*/libcrypto.so
+!3rdparty/*/libssl.so
 
 
 # Qt-es

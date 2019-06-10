@@ -49,3 +49,8 @@ contains(ANDROID_TARGET_ARCH,x86) {
         $$PWD/3rdparty/android24x86/libcrypto.so \
         $$PWD/3rdparty/android24x86/libssl.so
 }
+contains(ANDROID_TARGET_ARCH,arm64-v8a) {
+    ANDROID_EXTRA_LIBS = \
+        $$PWD/3rdparty/android26arm64/libcrypto.so \
+        $$PWD/3rdparty/android26arm64/libssl.so
+}

@@ -3,13 +3,15 @@
 
 #include <QCalendarWidget>
 #include <QMap>
+#include <QJsonObject>
 
 struct DateInfo
 {
-    DateInfo(bool bPassed = false, const QString &text = "");
+    DateInfo(bool bPassed = false, const QJsonObject &obj = {});
     std::shared_ptr<QPixmap> pixmap = nullptr;
     bool passed;
-    QString m_text;
+    QJsonObject m_obj;
+    QString GetFortuneText();
 };
 
 class MagicCalendarWidget : public QCalendarWidget

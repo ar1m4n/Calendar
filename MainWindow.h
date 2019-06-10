@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QNetworkReply>
+#include <QTimer>
 
 class QNetworkReply;
 class QNetworkAccessManager;
@@ -25,9 +26,13 @@ private:
     Ui::MainWindow *ui;
     QNetworkAccessManager *m_networkMgr;
     static const QString API_KEY;
-    QMap<QNetworkReply*, std::function<void(QNetworkReply *)>> m_handlers;
+    using Handlers = QMap<QNetworkReply*, std::function<void(QNetworkReply *)>>;
+    Handlers m_handlers;
     MagicCalendarWidget *m_calendar;
 
+    void GetFortune();
+    void SetPassedFortune(const QDate &date, const QJsonObject &fortune);
+    void SendEmail(const QDate &date, const QJsonObject &fortune);
 
 private slots:
     void onManagerFinished(QNetworkReply *reply);
